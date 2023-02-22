@@ -14,6 +14,8 @@ export default {
 </script>
 
 <template>
+  <h3>Tarefas concluídas:</h3>
+
   <div class="porcentagem">
     <div class="barra" :style="estiloBarra">
       <span>{{ porcentagem.toFixed(2) }} %</span>

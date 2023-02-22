@@ -62,7 +62,6 @@ export default {
 
 <template>
   <div class="container">
-    <h3>Tarefas:</h3>
     <BarraTarefasConcluidas :porcentagem="porcentagem" />
     <NovaTarefa @tarefaAdicionada="adicionarTarefa($event)" />
     <ListaTarefas
