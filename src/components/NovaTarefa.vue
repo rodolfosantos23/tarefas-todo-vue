@@ -23,7 +23,7 @@ export default {
 
 <template>
   <p><strong>Adicionar nova tarefa:</strong></p>
-  <input type="text" ref="input" v-on:keyup.enter="adicionarTarefa" />
+  <input type="text" ref="input" placeholder="Digite a tarefa" v-on:keyup.enter="adicionarTarefa" />
   <button @click="adicionarTarefa">Adicionar</button>
 </template>
 
