@@ -22,7 +22,7 @@ export default {
 
 <template>
   <p class="titulo">Lista de tarefas:</p>
-  <ul v-if="tarefas">
+  <ul v-if="tarefas.length > 0">
     <li v-for="tarefa in tarefas" :key="tarefa.id">
       <input
         type="checkbox"
