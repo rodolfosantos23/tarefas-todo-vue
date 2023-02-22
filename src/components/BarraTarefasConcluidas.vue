@@ -31,6 +31,7 @@ export default {
   text-align: center;
   margin: 0 0 35px 0;
   display: flex;
+  background: #fafafa;
 }
 
 .porcentagem .barra {
