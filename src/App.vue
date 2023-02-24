@@ -1,7 +1,7 @@
 <script setup>
 import NovaTarefa from "./components/NovaTarefa.vue";
 import ListaTarefas from "./components/ListaTarefas.vue";
-import BarraTarefasConcluidas from "./components/BarraTarefasConcluidas.vue";
+import BarraProgresso from "./components/BarraProgresso.vue";
 </script>
 
 <script>
@@ -9,7 +9,7 @@ export default {
   components: {
     NovaTarefa,
     ListaTarefas,
-    BarraTarefasConcluidas,
+    BarraProgresso,
   },
   data() {
     return {
@@ -26,18 +26,9 @@ export default {
     },
     calculaPorcentagem() {
       this.totalTarefas = this.tarefas.length;
-      this.tarefasConcluidas = 0;
-      this.tarefas.forEach((t) => {
-        if (t.concluida) {
-          this.tarefasConcluidas++;
-        }
-      });
-
-      if (this.tarefasConcluidas == 0) {
-        this.porcentagem = 0;
-      } else {
-        this.porcentagem = (this.tarefasConcluidas / this.totalTarefas) * 100;
-      }
+      this.tarefasConcluidas = this.tarefas.filter((t) => t.concluida).length;
+      this.porcentagem =
+        Math.round((this.tarefasConcluidas / this.totalTarefas) * 100) || 0;
       this.atualizaLocalStorage();
     },
     removerElemento(tarefas) {
@@ -62,7 +53,7 @@ export default {
 
 <template>
   <div class="container">
-    <BarraTarefasConcluidas :porcentagem="porcentagem" />
+    <BarraProgresso :porcentagem="porcentagem" />
     <NovaTarefa @tarefaAdicionada="adicionarTarefa($event)" />
     <ListaTarefas
       :tarefas="tarefas"
