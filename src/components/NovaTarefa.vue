@@ -1,6 +1,5 @@
 <script>
 export default {
-
   emits: ["tarefaAdicionada"],
   methods: {
     adicionarTarefa() {
@@ -10,8 +9,8 @@ export default {
         return false;
       }
 
-      this.$emit('tarefaAdicionada', {
-        id: (new Date().getTime() + (1 + Math.random(0, 999)) * 0x10000) | 0,
+      this.$emit("tarefaAdicionada", {
+        id: (new Date().getTime() + Math.random(0, 999)) | 0,
         nome: this.$refs.input.value,
         concluida: false,
       });
@@ -25,7 +24,12 @@ export default {
 
 <template>
   <p><strong>Adicionar nova tarefa:</strong></p>
-  <input type="text" ref="input" placeholder="Digite a tarefa" v-on:keyup.enter="adicionarTarefa" />
+  <input
+    type="text"
+    ref="input"
+    placeholder="Digite a tarefa"
+    v-on:keyup.enter="adicionarTarefa"
+  />
   <button @click="adicionarTarefa">Adicionar</button>
 </template>
 

@@ -17,12 +17,12 @@ export default {
     };
   },
   methods: {
-    adicionarTarefa(tarefa) {
-      this.tarefas.push(tarefa);
+    adicionarTarefa(novaTarefa) {
+      this.tarefas.push(novaTarefa);
       this.atualizaLocalStorage();
     },
-    removerTarefa(tarefas) {
-      this.tarefas = tarefas;
+    removerTarefa(tarefasAtualizadas) {
+      this.tarefas = tarefasAtualizadas;
       this.atualizaLocalStorage();
     },
     atualizaLocalStorage() {
