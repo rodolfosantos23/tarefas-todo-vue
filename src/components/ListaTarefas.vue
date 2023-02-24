@@ -9,9 +9,7 @@ export default {
   emits: ["alterouStatus", "removeuTarefa"],
   methods: {
     alteraStatus(e) {
-      let tarefaEncontrada = this.tarefas.find((tarefa) => {
-        return tarefa.id === parseInt(e.target.id);
-      });
+      let tarefaEncontrada = this.tarefas.find((tarefa) => tarefa.id === parseInt(e.target.id));
       tarefaEncontrada.concluida = e.target.checked;
       this.$emit("alterouStatus");
     },
