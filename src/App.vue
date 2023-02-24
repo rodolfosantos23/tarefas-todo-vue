@@ -17,7 +17,11 @@ export default {
     };
   },
   methods: {
-    removerElemento(tarefas) {
+    adicionarTarefa(tarefa) {
+      this.tarefas.push(tarefa);
+      this.atualizaLocalStorage();
+    },
+    removerTarefa(tarefas) {
       this.tarefas = tarefas;
       this.atualizaLocalStorage();
     },
@@ -34,11 +38,11 @@ export default {
 <template>
   <div class="container">
     <BarraProgresso :tarefas="tarefas" />
-    <NovaTarefa :tarefas="tarefas" @tarefaAdicionada="atualizaLocalStorage" />
+    <NovaTarefa @tarefaAdicionada="adicionarTarefa" />
     <ListaTarefas
       :tarefas="tarefas"
       @alterouStatus="atualizaLocalStorage"
-      @removeuElemento="removerElemento($event)"
+      @removeuTarefa="removerTarefa"
     />
   </div>
 </template>

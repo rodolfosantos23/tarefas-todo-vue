@@ -6,7 +6,7 @@ export default {
       required: true,
     },
   },
-  emits: ["alterouStatus", "removeuElemento"],
+  emits: ["alterouStatus", "removeuTarefa"],
   methods: {
     alteraStatus(e) {
       let tarefaEncontrada = this.tarefas.find((tarefa) => {
@@ -17,7 +17,7 @@ export default {
     },
     remover(id) {
       const arrayFiltrado = this.tarefas.filter((e) => e.id !== id);
-      this.$emit("removeuElemento", arrayFiltrado);
+      this.$emit("removeuTarefa", arrayFiltrado);
     },
   },
 };
