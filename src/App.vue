@@ -14,50 +14,30 @@ export default {
   data() {
     return {
       tarefas: [],
-      porcentagem: 0,
-      tarefasConcluidas: 0,
-      totalTarefas: 0,
     };
   },
   methods: {
-    adicionarTarefa(tarefa) {
-      this.tarefas.push(tarefa);
-      this.calculaPorcentagem();
-    },
-    calculaPorcentagem() {
-      this.totalTarefas = this.tarefas.length;
-      this.tarefasConcluidas = this.tarefas.filter((t) => t.concluida).length;
-      this.porcentagem =
-        Math.round((this.tarefasConcluidas / this.totalTarefas) * 100) || 0;
-      this.atualizaLocalStorage();
-    },
     removerElemento(tarefas) {
       this.tarefas = tarefas;
-      this.calculaPorcentagem();
+      this.atualizaLocalStorage();
     },
     atualizaLocalStorage() {
       localStorage.setItem("tarefas", JSON.stringify(this.tarefas));
     },
   },
   mounted() {
-    const tarefasLocal = JSON.parse(localStorage.getItem("tarefas"));
-    if (tarefasLocal.length > 0) {
-      this.tarefas = tarefasLocal;
-      this.calculaPorcentagem();
-    } else {
-      this.tarefas = [];
-    }
+    this.tarefas = JSON.parse(localStorage.getItem("tarefas")) || [];
   },
 };
 </script>
 
 <template>
   <div class="container">
-    <BarraProgresso :porcentagem="porcentagem" />
-    <NovaTarefa @tarefaAdicionada="adicionarTarefa($event)" />
+    <BarraProgresso :tarefas="tarefas" />
+    <NovaTarefa :tarefas="tarefas" @tarefaAdicionada="atualizaLocalStorage" />
     <ListaTarefas
       :tarefas="tarefas"
-      @alterouStatus="calculaPorcentagem"
+      @alterouStatus="atualizaLocalStorage"
       @removeuElemento="removerElemento($event)"
     />
   </div>

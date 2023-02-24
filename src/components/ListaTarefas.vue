@@ -1,7 +1,10 @@
 <script>
 export default {
   props: {
-    tarefas: Array,
+    tarefas: {
+      type: Array,
+      required: true,
+    },
   },
   emits: ["alterouStatus", "removeuElemento"],
   methods: {

@@ -1,5 +1,11 @@
 <script>
 export default {
+  props: {
+    tarefas: {
+      type: Array,
+      required: true,
+    },
+  },
   emits: ["tarefaAdicionada"],
   methods: {
     adicionarTarefa() {
@@ -9,11 +15,13 @@ export default {
         return false;
       }
 
-      this.$emit("tarefaAdicionada", {
+      this.tarefas.push({
         id: (new Date().getTime() + (1 + Math.random(0, 999)) * 0x10000) | 0,
         nome: this.$refs.input.value,
         concluida: false,
-      });
+      })
+
+      this.$emit('tarefaAdicionada', true);
       this.$refs.input.value = "";
       this.$refs.input.focus();
     },

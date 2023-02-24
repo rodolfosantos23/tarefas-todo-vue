@@ -1,13 +1,21 @@
 <script>
 export default {
   props: {
-    porcentagem: Number,
+    tarefas: {
+      type: Array,
+      required: true,
+    },
   },
   computed: {
     estiloBarra() {
       return {
         width: `${this.porcentagem}%`,
       };
+    },
+    porcentagem() {
+      const totalTarefas = this.tarefas.length;
+      this.tarefasConcluidas = this.tarefas.filter((t) => t.concluida).length;
+      return Math.round((this.tarefasConcluidas / totalTarefas) * 100) || 0;
     },
   },
 };
